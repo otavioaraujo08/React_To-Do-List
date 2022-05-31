@@ -1,24 +1,43 @@
-import { Box, Button, TextField, Typography } from '@mui/material'
-import './index.css'
+import { Paper, Button, TextField } from '@mui/material'
+import { useState } from "react"
+import AddIcon from '@mui/icons-material/Add';
 
-function Form(){
+function Form({ addTodo, }){
+    const [text, setText] = useState(null)
+    const [id, setId] = useState(0)
+    
+    const todoCreate = (text) => {
+        const todoObj = {text: text, id: id}
+        setId(id + 1)
+        addTodo(todoObj)
+        
+        document.getElementById("outlined-basic").value = null;
+    }
+
     return(
-        <Box>
-            {/* Componente de Título/Paragráfo */}
-            <Typography variant="h5" gutterBottom component="div">
-                Formulário
-            </Typography>
+        <Paper style={{ padding: "1em" }}>
+            <div style={{ display: "flex", justifyContent: "center"}}>
+                {/* Input de Texto */}
+                <TextField 
+                  id="outlined-basic" 
+                  label="Tarefa" 
+                  placeholder="Digite sua tarefa" 
+                  variant="outlined" 
+                  fullWidth
+                  style={{ marginRight: "1em" }}  
+                  onChange = {(e) => setText(e.target.value)}
+                />
 
-            {/* Input de Texto */}
-            <TextField id="outlined-basic" label="Tarefa" placeholder="Digite sua tarefa" variant="outlined" />
-
-            {/* Componente de botão */}
-            <Button 
-              variant="contained"
-              size="large">
-                Contained
-            </Button>
-        </Box>
+                {/* Componente de botão */}
+                <Button 
+                  variant="contained"
+                  size="large"
+                  onClick = {() => todoCreate(text)}
+                >
+                    <AddIcon />
+                </Button>
+            </div>
+        </Paper>
     )
 }
 
