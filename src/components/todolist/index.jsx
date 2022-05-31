@@ -7,7 +7,7 @@ import {
 
 export default function Todolist({ todo, deleteTodo }) {
   return (
-    <Paper>
+    <Paper style={{marginBottom: '1rem'}}>
       <ListItem
         secondaryAction={
           <IconButton edge="end" aria-label="delete" onClick={() => deleteTodo(todo.id)}>
