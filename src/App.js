@@ -1,13 +1,9 @@
 import './App.css';
-import Form from './components/form/index'
+import Home from './pages/index'
 
 function App() {
-  return (
-    <>
-      <h1>Olá Mundo</h1>
-
-      <Form />
-    </>
+  return ( 
+    <Home/>
   );
 }
 
