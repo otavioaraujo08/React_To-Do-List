@@ -3,7 +3,7 @@ import Form     from '../components/form/index'
 import Todolist from '../components/todolist/index'
 // Import dos components do material ui
 import { Container, List } from '@mui/material'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 // Minha tela principal
 function Home(){
@@ -20,16 +20,17 @@ function Home(){
 
         setTodos(filterId)
     }
-
+    
+    useEffect(() => {
+        console.log(`Alterou o ${todos}`)
+    }, [todos])
     return(
         <Container maxWidth="xs" style={{marginTop: '1em'}}>
             <Form addTodo={addTodo} />
 
             <List sx={{ marginTop: "1em" }}>
                 {todos.map((todo, key) => (
-                    <div key={key} style={{marginTop: "1em"}}>
-                        <Todolist todo={todo} deleteTodo={deleteTodo}/>
-                    </div>
+                    <Todolist key={key} todo={todo} deleteTodo={deleteTodo}/>
                 ))}
             </List>
         </Container>
